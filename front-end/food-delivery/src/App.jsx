@@ -30,6 +30,7 @@ import Inspiration from './Components/OrderOnline/Inspiration';
 import Topbrands from './Components/OrderOnline/Topbrands';
 import Resturants from './Components/OrderOnline/Resturants';
 import Food from './Components/OrderOnline/Food';
+import Resturant_page from './Pages/Resturant_page';
 
 
 const apiCall = ()=>{
@@ -155,6 +156,10 @@ const router = createBrowserRouter(
       path:'/order-online/cake',
       element:<Cake/>
     },
+    {
+      path:'food/order-online/resturants',
+      element:<Resturant_page/>
+    }
   ]
 )
 

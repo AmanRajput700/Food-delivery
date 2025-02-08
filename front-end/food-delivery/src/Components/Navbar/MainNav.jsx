@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
 import { Link, Outlet } from "react-router-dom";
@@ -64,4 +64,4 @@ const MainNav = () => {
   );
 };
 
-export default MainNav;
+export default memo(MainNav);

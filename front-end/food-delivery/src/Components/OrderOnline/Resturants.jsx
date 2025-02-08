@@ -11,12 +11,12 @@ const Resturants = () => {
             <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
             <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
             <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
-            <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
-            <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
-            <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
-            <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
-            <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
-            <ResturantItem img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
+            <ResturantItem  img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
+            <ResturantItem  img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
+            <ResturantItem  img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
+            <ResturantItem  img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
+            <ResturantItem  img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
+            <ResturantItem  img={"https://b.zmtcdn.com/data/pictures/3/3800293/bf247dca851de0d48be4e68f2bb75dd7_o2_featured_v2.jpg"} name={"Kailash Sweets and Snacks"} rating={"4.2"} categories={"Mithai, Street food, Panipuri"} price={"$200"}/>
 
         </div>
     </div>
