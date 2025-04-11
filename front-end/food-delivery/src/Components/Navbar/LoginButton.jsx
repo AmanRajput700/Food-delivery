@@ -4,7 +4,7 @@ export default function LoginButton(){
     const {isOpen, setisOpen , setRegister} = useContext(LoginContext);
     return(
         <>
-            <button className="cursor-pointer" onClick={()=>{setisOpen(true);setRegister(false)}}>Log in</button>
+            <button className="cursor-pointer" onClick={()=>{setisOpen(true);setRegister(false)}}>Login</button>
         </>
     );
 }

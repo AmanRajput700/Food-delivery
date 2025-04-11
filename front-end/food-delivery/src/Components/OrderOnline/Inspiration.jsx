@@ -40,7 +40,6 @@ const Inspiration = ({title}) => {
             <Item img={"https://b.zmtcdn.com/data/o2_assets/bf2d0e73add1c206aeeb9fec762438111727708719.png"} title={'Biryani'} routeval={'/order-online/biryani'}/>
             <Item img={"https://b.zmtcdn.com/data/o2_assets/52eb9796bb9bcf0eba64c643349e97211634401116.png"} title={'Thali'} routeval={'/order-online/thali'}/>
             <Item img={"https://b.zmtcdn.com/data/o2_assets/8dc39742916ddc369ebeb91928391b931632716660.png"} title={'Dosa'} routeval={'/order-online/dosa'}/>
-            <Item img={"https://b.zmtcdn.com/data/dish_images/c2f22c42f7ba90d81440a88449f4e5891634806087.png"} title={'Rolls'} routeval={'/order-online/rolls'}/>
             <Item img={"https://b.zmtcdn.com/data/o2_assets/019409fe8f838312214d9211be010ef31678798444.jpeg"} title={'Veg meals'} routeval={'/order-online/veg-meals'}/>
             <Item img={"https://b.zmtcdn.com/data/dish_images/d5ab931c8c239271de45e1c159af94311634805744.png"} title={'Cake'} routeval={'/order-online/cake'}/>
         </div>

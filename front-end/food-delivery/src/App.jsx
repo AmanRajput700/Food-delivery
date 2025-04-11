@@ -21,7 +21,6 @@ import Biryani from './Components/OrderOnline/ChildElement/Biryani';
 import Thali from './Components/OrderOnline/ChildElement/Thali';
 import Dosa from './Components/OrderOnline/ChildElement/Dosa';
 import FriedRice from './Components/OrderOnline/ChildElement/FriedRice';
-import Roll from './Components/OrderOnline/ChildElement/Roll';
 import Paneer from './Components/OrderOnline/ChildElement/Paneer';
 import VegMeals from './Components/OrderOnline/ChildElement/VegMeals';
 import Cake from './Components/OrderOnline/ChildElement/Cake';
@@ -113,43 +112,66 @@ const router = createBrowserRouter(
     },
     {
       path:"/order-online/pizza",
-      element:<Pizza/>
+      element:<div>
+        <MainNav/>
+        <Pizza/>
+      </div>
     },
     {
       path:"/order-online/burger",
-      element:<Burger/>
+      element:<div>
+        <MainNav/>
+        <Burger/>
+      </div>
     },
     {
       path:'/order-online/biryani',
-      element:<Biryani/>
+      element:<div>
+        <MainNav/>
+        <Biryani/>
+      </div>
     },
     {
       path:'/order-online/thali',
-      element:<Thali/>
+      element:<div>
+        <MainNav/>
+        <Thali/>
+      </div>
     },
     {
       path:'/order-online/dosa',
-      element:<Dosa/>
+      element:<div>
+        <MainNav/>
+        <Dosa/>
+      </div>
     },
     {
       path:'/order-online/fried-rice',
-      element:<FriedRice/>
-    },
-    {
-      path:'/order-online/roll',
-      element:<Roll/>
+      element:<div>
+        <MainNav/>
+        <FriedRice/>
+      </div>
     },
     {
       path:'/order-online/paneer',
-      element:<Paneer/>
+      element:<div>
+        <MainNav/>
+        <Paneer/>
+      </div>
     },
     {
       path:'/order-online/veg-meals',
-      element:<VegMeals/>
+      element:<div>
+        <MainNav/>
+        <VegMeals/>
+      </div>
     },
     {
       path:'/order-online/cake',
-      element:<Cake/>
+      element:<div>
+        <MainNav/>
+        <Cake/>
+      </div>
     },
     {
       path:'food/order-online/resturants',
