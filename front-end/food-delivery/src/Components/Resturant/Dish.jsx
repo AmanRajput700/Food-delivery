@@ -1,7 +1,7 @@
 import { useState } from "react"
 import React from 'react'
 
-const Dish = ({title, price, rating_star ,rating_count, image}) => {
+const Dish = ({title, price, rating_star ,rating_count, image,description}) => {
 
     const [count, setCount] = useState(0);
   return (<>
@@ -14,6 +14,9 @@ const Dish = ({title, price, rating_star ,rating_count, image}) => {
                 <span className='text-green-900'>{rating_star}</span>
                 <span className='text-gray-500'>({rating_count})</span>
             </p>
+            <div className="mt-2 max-w-md w-full text-sm sm:text-base text-gray-600 break-words">
+                <span>{description}</span>
+            </div>
         </div>
 
         <div className='flex flex-col items-center relative'>

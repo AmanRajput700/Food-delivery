@@ -9,10 +9,6 @@ const Resturant_page = () => {
     <div className='w-full sm:w-[80%] md:w-[70%] lg:w-[60%]  mx-auto mt-8'>
         <div>
             <h1 className='font-[Poppins] font-bold text-2xl p-2'>Laziz Pizza</h1>
-            <div className='flex gap-5 font-[Gilroy-Bold] text-lg'>
-                <span className='p-2'>Order Online</span>
-                <span className='p-2'>Dineout</span>
-            </div>
             <hr className='bg-gray-400 h-[1px] border-none'/>
         </div>
         

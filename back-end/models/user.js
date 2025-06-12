@@ -4,11 +4,11 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 
 const userSchema = new Schema({
-    
-    email:{
-        type:String,
-        required:true
-    }
+    name: { type: String, required: true },
+    email: { type: String, unique: true, required: true },
+    password: { type: String, required: true }, // hash this!
+    isAdmin: { type: Boolean, default: false },
+    phone: String
 });
 
 //plugin will automatically give user and password to shcema and 

@@ -30,7 +30,7 @@ const Resturants = () => {
               name={restaurant.name}
               rating={restaurant.rating} 
               categories={restaurant.category}
-              price={`${restaurant.price}`}
+              price={restaurant.price}
             />
           ))
         ) : (
