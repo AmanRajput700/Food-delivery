@@ -12,6 +12,8 @@ const LoginForm = () => {
 
   function onSubmit(data){
     console.log(data);
+    setisOpen(false)
+
   }
 
   return (

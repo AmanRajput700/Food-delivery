@@ -5,8 +5,10 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const connectDB = require('./db');
 const ListingRestaurant = require('./models/listing')
+const User = require('./models/user');
 const methodOverride = require('method-override');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 
 
 
@@ -23,10 +25,7 @@ connectDB();
 
 //demodatafile here to save data
 
-//Start server
-app.listen(8080, () => {
-    console.log('server listening on port 8080')
-});
+
 
 app.get("/",(req,res)=>{
     res.send("Hello World");
@@ -50,9 +49,35 @@ app.get("/:value", async (req, res) => {
     }
 });
 
+app.post("/register", async (req, res) => {
+    try {
+        const { username, email, password, role } = req.body;
 
-// app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "build", "index.html"));
-//   });
+        // Check for existing email
+        const existing = await User.findOne({ email });
+        if (existing) return res.status(400).json({ message: 'Email already in use' });
+           // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = new User({
+            username,
+            email,
+            password: hashedPassword,
+            role // 'user' or 'admin' from frontend
+        });
+
+        await newUser.save();
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (err) {
+        console.error('Registration error:', err.message);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+//Start server
+app.listen(8080, () => {
+    console.log('server listening on port 8080')
+});
+
 
 

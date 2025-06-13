@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { LoginContext } from '../../contexts/loginContext';
+import axios from 'axios';
+
 const SignUp = () => {
 
     const {
@@ -12,7 +14,14 @@ const SignUp = () => {
     const {isOpen, setisOpen} = useContext(LoginContext)
 
     function onSubmit(data){
-      console.log(data);
+      axios.post('http://localhost:8080/register',data)
+      .then((res)=>{
+        console.log(res.data);
+      })
+      .catch((err)=>{
+        console.log('error:'+err.message);
+      })
+      setisOpen(false);
     }
 
   return (
@@ -57,6 +66,20 @@ const SignUp = () => {
               'Password must contain at least one letter, one number, and one special character',
           }})} className="border rounded-sm w-full" type="password" id='password'/>
           {errors.password && <span className='text-red-500 text-sm w-[100%] text-center'>{errors.password.message}</span>}
+        </div>
+
+        <div className="w-full">
+          <label className="text-sm" htmlFor="role">Role</label><br />
+            <select
+              {...register('role', { required: true })}
+              className="border rounded-sm w-full"
+              id="role"
+              defaultValue="user"
+            >
+          <option value="user">User</option>
+          <option value="admin">Restaurant Owner</option>
+            </select>
+          {errors.role && <span className="text-red-500 text-sm">Please select a role</span>}
         </div>
 
         <input className='border border-black-100 mt-1 rounded-sm px-2' disabled={isSubmitting}
