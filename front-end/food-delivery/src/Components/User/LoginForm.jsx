@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { LoginContext } from '../../contexts/loginContext';
+import axios from 'axios';
 const LoginForm = () => {
   const {
     register,
@@ -11,8 +12,14 @@ const LoginForm = () => {
   const {isOpen, setisOpen} = useContext(LoginContext);
 
   function onSubmit(data){
-    console.log(data);
-    setisOpen(false)
+    axios.post('http://localhost:8080/login',data)
+    .then((res)=>{
+      console.log(res.data);
+    })
+    .catch((err)=>{
+      console.log('error'+err.message);
+    })
+    setisOpen(false);
 
   }
 

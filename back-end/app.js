@@ -49,6 +49,7 @@ app.get("/:value", async (req, res) => {
     }
 });
 
+//Signup
 app.post("/register", async (req, res) => {
     try {
         const { username, email, password, role } = req.body;
@@ -73,6 +74,33 @@ app.post("/register", async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
   });
+
+
+//Login
+app.post('/login',async (req,res)=>{
+    
+    try{
+        const {username , password} = req.body;
+      console.log("Received username:", {username});
+    const user = await User.findOne({username});
+    if (!user) return res.status(401).json({ error: "User not found" });
+
+
+     const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ error: "Invalid password" });
+
+
+//      req.session.user = {
+//       id: user._id,
+//       username: user.username,
+//       role: user.role
+//     };
+
+//     res.json({ message: "Login successful", user: req.session.user });
+  } catch (err) {
+    res.status(500).json({ error: "Login error" });
+  }
+})
 
 //Start server
 app.listen(8080, () => {
