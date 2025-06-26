@@ -12,12 +12,12 @@ const LoginForm = () => {
   const {isOpen, setisOpen} = useContext(LoginContext);
 
   function onSubmit(data){
-    axios.post('http://localhost:8080/login',data)
+    axios.post('http://localhost:8080/login',data,{withCredentials: true})
     .then((res)=>{
       console.log(res.data);
     })
     .catch((err)=>{
-      console.log('error'+err.message);
+      console.log('error'+ err.message);
     })
     setisOpen(false);
 

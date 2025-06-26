@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
 import { Link, Outlet } from "react-router-dom";
+import LogOut from "./LogOut";
 const MainNav = () => {
   return (
     <div className="w-full bg-white top-0 z-50 flex flex-col items-center text-[14px] sm:text-[16px] ">

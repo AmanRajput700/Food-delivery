@@ -9,6 +9,7 @@ const User = require('./models/user');
 const methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 
 
@@ -18,7 +19,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
-app.use(cookieParser())
+app.use(cookieParser());
+
+app.use(session({
+  secret: 'yourSuperSecretKey',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false, // true in production (https)
+    maxAge: 1000 * 60 * 60 * 24  // 1 day
+  }
+}));
 
 //connect to database
 connectDB();
@@ -90,17 +102,35 @@ app.post('/login',async (req,res)=>{
     if (!isMatch) return res.status(401).json({ error: "Invalid password" });
 
 
-//      req.session.user = {
-//       id: user._id,
-//       username: user.username,
-//       role: user.role
-//     };
+     req.session.user = {
+      id: user._id,
+      username: user.username,
+      role: user.role
+    };
 
-//     res.json({ message: "Login successful", user: req.session.user });
+     res.json({ message: "Login successful", user: req.session.user });
   } catch (err) {
     res.status(500).json({ error: "Login error" });
   }
 })
+
+//logout
+app.post('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) return res.status(500).json({ error: 'Logout failed' });
+    res.clearCookie('connect.sid'); // clear session cookie
+    res.json({ message: 'Logout successful' });
+  });
+});
+
+//refresh 
+app.get('/check-auth', (req, res) => {
+  if (req.session.user) {
+    res.json({ isLoggedIn: true, user: req.session.user });
+  } else {
+    res.json({ isLoggedIn: false });
+  }
+});
 
 //Start server
 app.listen(8080, () => {
