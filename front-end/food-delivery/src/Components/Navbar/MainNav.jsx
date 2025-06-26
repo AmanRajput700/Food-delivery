@@ -1,9 +1,14 @@
-import React, { memo } from "react";
+import React, { memo ,useContext} from "react";
 import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
 import { Link, Outlet } from "react-router-dom";
 import LogOut from "./LogOut";
+import { AuthContext } from "../../contexts/authContext";
 const MainNav = () => {
+
+    const { isLoggedIn, user} = useContext(AuthContext);
+     
+
   return (
     <div className="w-full bg-white top-0 z-50 flex flex-col items-center text-[14px] sm:text-[16px] ">
       <div className="w-full bg-white shadow-md">
@@ -33,8 +38,17 @@ const MainNav = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <LoginButton />
-            <SignupButton />
+            {isLoggedIn ? (
+              <>
+                <span className="font-medium">Welcome, {user?.username}</span>
+                <LogOut />
+              </>
+            ) : (
+              <>
+                <LoginButton />
+                <SignupButton />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -65,4 +79,4 @@ const MainNav = () => {
   );
 };
 
-export default memo(MainNav);
+export default MainNav;

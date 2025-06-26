@@ -14,7 +14,10 @@ const session = require('express-session');
 
 
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',  
+  credentials: true                 
+}));
 //body parser
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -22,9 +25,9 @@ app.use(methodOverride('_method'));
 app.use(cookieParser());
 
 app.use(session({
-  secret: 'yourSuperSecretKey',
+  secret: 'mySuperSecretKey',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
     httpOnly: true,
     secure: false, // true in production (https)

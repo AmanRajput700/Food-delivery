@@ -2,7 +2,10 @@ import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { LoginContext } from '../../contexts/loginContext';
 import axios from 'axios';
+import { AuthContext } from '../../contexts/authContext';
+
 const LoginForm = () => {
+  const { setIsLoggedIn, setUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -12,14 +15,19 @@ const LoginForm = () => {
   const {isOpen, setisOpen} = useContext(LoginContext);
 
   function onSubmit(data){
+    
     axios.post('http://localhost:8080/login',data,{withCredentials: true})
     .then((res)=>{
       console.log(res.data);
+      setIsLoggedIn(true);                
+      setUser(res.data.user); 
+       setisOpen(false);
     })
     .catch((err)=>{
+      alert('Invalid');
       console.log('error'+ err.message);
     })
-    setisOpen(false);
+   
 
   }
 
