@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import LoginButton from "./LoginButton";
-import RegisterButton from "./RegisterButton";
 import SignupButton from "./SignupButton";
+import LogOut from "./LogOut"; // import your logout component
+import { AuthContext } from "../../contexts/authContext"; // adjust path as needed
 
 export default function NavbarbuttonGroup(){
-    return(
-        <div className="flex flex-row justify-center gap-4 text-[18px] max-sm:text-[16px]">
-            {/* <RegisterButton/> */}
-            <LoginButton/>
-            <SignupButton/>
-        </div>
-    );
+  const { isLoggedIn, user } = useContext(AuthContext);
+
+  return(
+    <div className="flex flex-row justify-center gap-4 text-[18px] max-sm:text-[16px]">
+      {isLoggedIn ? (
+        <>
+          <span className="font-medium">Welcome, {user?.username}</span>
+          <LogOut />
+        </>
+      ) : (
+        <>
+          <LoginButton/>
+          <SignupButton/>
+        </>
+      )}
+    </div>
+  );
 }

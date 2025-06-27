@@ -6,6 +6,7 @@ import { LoginProvider } from './contexts/loginContext.jsx'
 import { AuthProvider } from './contexts/authContext.jsx'
 
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <LoginProvider>

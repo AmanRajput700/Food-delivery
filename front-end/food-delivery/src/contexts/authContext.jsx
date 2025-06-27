@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
-  // Check session on initial load
   useEffect(() => {
     axios.get("http://localhost:8080/check-auth", { withCredentials: true })
       .then((res) => {
@@ -22,19 +21,18 @@ export const AuthProvider = ({ children }) => {
       .catch((err) => console.error("Auth check failed", err));
   }, []);
 
-//   const logout = () => {
-//     axios.post("http://localhost:8080/logout", {}, { withCredentials: true })
-//       .then(() => {
-//         setIsLoggedIn(false);
-//         setUser(null);
-//       })
-//       .catch((err) => console.error("Logout failed", err));
-//   };
+  const logout = () => {
+    axios.post("http://localhost:8080/logout", {}, { withCredentials: true })
+      .then(() => {
+        setIsLoggedIn(false);
+        setUser(null);
+      })
+      .catch((err) => console.error("Logout failed", err));
+  };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, setIsLoggedIn, setUser}}>
+    <AuthContext.Provider value={{ isLoggedIn, user, setIsLoggedIn, setUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
-

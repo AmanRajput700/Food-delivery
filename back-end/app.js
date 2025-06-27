@@ -53,16 +53,7 @@ app.get("/listings",async (req,res)=>{
 
 
 
-app.get("/:value", async (req, res) => {
-    try {
-        let value = req.params.value;
-        const data = await ListingRestaurant.find({ item : { $regex: new RegExp(value, 'i') } });
 
-        res.json(data);
-    } catch (err) {
-        res.status(500).json({ error: "Something went wrong!" });
-    }
-});
 
 //Signup
 app.post("/register", async (req, res) => {
@@ -96,7 +87,6 @@ app.post('/login',async (req,res)=>{
     
     try{
         const {username , password} = req.body;
-      console.log("Received username:", {username});
     const user = await User.findOne({username});
     if (!user) return res.status(401).json({ error: "User not found" });
 
@@ -133,6 +123,17 @@ app.get('/check-auth', (req, res) => {
   } else {
     res.json({ isLoggedIn: false });
   }
+});
+
+app.get("/:value", async (req, res) => {
+    try {
+        let value = req.params.value;
+        const data = await ListingRestaurant.find({ item : { $regex: new RegExp(value, 'i') } });
+
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: "Something went wrong!" });
+    }
 });
 
 //Start server

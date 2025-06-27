@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/authContext";
 const MainNav = () => {
 
     const { isLoggedIn, user} = useContext(AuthContext);
-     
+    console.log("isLoggedIn:", isLoggedIn);
 
   return (
     <div className="w-full bg-white top-0 z-50 flex flex-col items-center text-[14px] sm:text-[16px] ">

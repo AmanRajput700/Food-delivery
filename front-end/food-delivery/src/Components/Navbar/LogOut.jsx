@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../../contexts/authContext';
 
 const LogOut = ()=>{
-    const { setIsLoggedIn } = useContext(AuthContext); 
+    const { setIsLoggedIn,setUser} = useContext(AuthContext); 
 
     function handleLogout(){
         axios.post('http://localhost:8080/logout', {}, { withCredentials: true })
@@ -15,7 +15,7 @@ const LogOut = ()=>{
     }
     return(
         <div>
-            <button onClick={handleLogout} className="border px-2 rounded hover:bg-gray-200">LogOut</button>
+            <button className="cursor-pointer" onClick={handleLogout} >LogOut</button>
         </div>
     )
 }
