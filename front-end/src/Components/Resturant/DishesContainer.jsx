@@ -8,6 +8,7 @@ const DishesContainer = () => {
 
       <div className='flex flex-col gap-10 p-3'>
         <Dish title='Cheese garlic bread' price={"123"} rating_star={"4.2"} rating_count={"200"} description={'paneer '} image={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/dibrzyaugd7gxvagilsf"}/>
+        
       </div>
     </div>
   )
