@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
-import AdminPanel from "./AdminPanel";
 import LogOut from "./LogOut"; // import your logout component
 import { AuthContext } from "../../contexts/authContext"; // adjust path as needed
-
+import {FaUser} from 'react-icons/fa';
+import User from "../User/User";
 export default function NavbarbuttonGroup(){
   const { isLoggedIn, user } = useContext(AuthContext);
 
@@ -13,13 +13,7 @@ export default function NavbarbuttonGroup(){
       {isLoggedIn? (
         <>
           <span className="font-medium">Welcome, {user?.username}</span>
-          {user.role == "admin" ?(<>
-            <AdminPanel/>
-            <LogOut />
-            </>)
-            :(
-            <LogOut />
-            )}
+          <User/>
         </>
       ) : (
         <>

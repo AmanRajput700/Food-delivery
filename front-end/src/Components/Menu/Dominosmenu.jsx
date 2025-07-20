@@ -1,21 +1,23 @@
 import React from "react";
 import MainNav from '../Navbar/MainNav';
+import Dish from "../Resturant/Dish";
 
 function Dominosmenu() {
     return ( 
-        <div>
+       <div>
       <MainNav />
       
-      <div className='w-full sm:w-[80%] md:w-[70%] lg:w-[60%]  mx-auto mt-8'>
+      {/* Restaurant Header */}
+      <div className='w-full sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto mt-8'>
         <div>
-            <h1 className='font-[Poppins] font-bold text-2xl p-2'>Domino's</h1>
-            <hr className='bg-gray-400 h-[1px] border-none'/>
+          <h1 className='font-[Poppins] font-bold text-2xl p-2'>Domino's</h1>
+          <hr className='bg-gray-400 h-[1px] border-none'/>
         </div>
-    </div>
+      </div>
+
+      {/* Restaurant Info Card */}
       <div className="w-full flex justify-center mt-5">
-        
         <div className="w-full max-w-2xl bg-[#efefef] rounded-3xl p-5">
-          
           <div className="rounded-2xl border bg-white z-10 p-3 sm:p-5">
             <div className="flex flex-col text-[16px]">
               
@@ -56,7 +58,22 @@ function Dominosmenu() {
 
             </div>
           </div>
+        </div>
+      </div>
 
+      {/* Dishes Section */}
+      <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto mt-8">
+        <h1 className='font-[Poppins] font-bold text-2xl p-3'>Dishes for you</h1>
+
+        <div className="flex flex-col gap-6 p-3">
+          <Dish 
+            title='Cheese garlic bread' 
+            price="123" 
+            rating_star="4.2" 
+            rating_count="200" 
+            description="paneer" 
+            image="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/dibrzyaugd7gxvagilsf"
+          />
         </div>
       </div>
 

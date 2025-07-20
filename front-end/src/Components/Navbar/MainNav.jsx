@@ -4,6 +4,8 @@ import SignupButton from "./SignupButton";
 import { Link, Outlet } from "react-router-dom";
 import LogOut from "./LogOut";
 import { AuthContext } from "../../contexts/authContext";
+import { FaUser } from "react-icons/fa";
+import User from "../User/User";
 const MainNav = () => {
 
     const { isLoggedIn, user} = useContext(AuthContext);
@@ -41,7 +43,7 @@ const MainNav = () => {
             {isLoggedIn ? (
               <>
                 <span className="font-medium">Welcome, {user?.username}</span>
-                <LogOut />
+                <User/>
               </>
             ) : (
               <>

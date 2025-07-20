@@ -30,7 +30,6 @@ import Topbrands from './Components/OrderOnline/Topbrands';
 import Resturants from './Components/OrderOnline/Resturants';
 import Food from './Components/OrderOnline/Food';
 import Resturant_page from './Pages/Resturant_page';
-import Admin from './Components/Admin/Admin';
 import { useEffect } from 'react';
 import Pizzahutmenu from './Components/Menu/pizzahutmenu';
 import Burgerkingmenu from './Components/Menu/burgerkingmenu';
@@ -39,6 +38,7 @@ import Lapinozmenu from './Components/Menu/lapinozmenu';
 import Kailashmenu from './Components/Menu/kailashmenu';
 import Naturalmenu from './Components/Menu/naturalmenu';
 import Mcdonladmenu from './Components/Menu/mcdonladmenu';
+import AdminPanel from './Components/AdminPanel/AdminPanel';
 
 
 
@@ -185,13 +185,6 @@ const router = createBrowserRouter(
       element:<Resturant_page/>
     },
     {
-      path:"/admin",
-      element:<div>
-        
-        <Admin/>
-      </div>
-    },
-    {
       path:'/food/order-online/pizzahut',
       element:<Pizzahutmenu/>
     },
@@ -213,6 +206,9 @@ const router = createBrowserRouter(
     },{
       path:'/food/order-online/mcdonalds',
       element:<Mcdonladmenu/>
+    },{
+      path:'/Adminpanel',
+      element:<AdminPanel/>
     }
   ]
 )
