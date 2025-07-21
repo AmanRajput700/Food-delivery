@@ -23,15 +23,14 @@ const Burger = () => {
   
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
           {items.length > 0 ? (
-            items.map((item) => (
-              <ResturantItem
-                
-                img={item.image}
-                name={item.name}
-                rating={item.rating} 
-                categories={item.category}
-                price={`${item.price}`}
-              />
+            items.map((item,index) => (
+                <ResturantItem
+                  key={index}
+                  img={item.image}
+                  name={item.name}
+                  rating={item.rating_star} 
+                  price={item.price_for_two}
+                />
             ))
           ) : (
             <p className="text-center col-span-3">Loading restaurants...</p>

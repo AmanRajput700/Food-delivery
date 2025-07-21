@@ -6,13 +6,11 @@ function AddRestaurantForm() {
     name: '',
     image: '',
     knownFor: '',
-    outlet: '',
-    delivery_time: '',
     location: '',
     price_for_two: '',
   });
 
-  const categories = ['burger', 'pizza', 'biryani', 'thali', 'dosa', 'cake', 'veg', 'meals'];
+  const categories = ['burger', 'pizza', 'biryani', 'thali', 'dosa', 'cake', 'veg-meals'];
 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value});
@@ -21,14 +19,12 @@ function AddRestaurantForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/restaurants', formData);
+      await axios.post('http://localhost:8080/api/restaurants', formData);
       alert('Restaurant added successfully!');
       setFormData({
         name: '',
         image: '',
         knownFor: '',
-        outlet: '',
-        delivery_time: '',
         location: '',
         price_for_two: '',
       });
@@ -57,19 +53,13 @@ function AddRestaurantForm() {
           ))}
         </select>
 
-        <input type="text" name="outlet" value={formData.outlet} onChange={handleChange}
-          placeholder="Outlet Name" className="border p-2 rounded"/>
-
-        <input type="text" name="delivery_time" value={formData.delivery_time} onChange={handleChange}
-          placeholder="Delivery Time" className="border p-2 rounded"/>
-
         <input type="text" name="location" value={formData.location} onChange={handleChange}
           placeholder="Location" className="border p-2 rounded"/>
 
         <input type="number" name="price_for_two" value={formData.price_for_two} onChange={handleChange}
           placeholder="Price for Two" className="border p-2 rounded"/>
 
-        <button type="submit" className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+        <button type="submit" className="bg-red-500 text-white p-2 rounded hover:bg-red-700">
           Add Restaurant
         </button>
 

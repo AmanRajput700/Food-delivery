@@ -24,14 +24,13 @@ const Biryani = () => {
     
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
             {items.length > 0 ? (
-              items.map((item) => (
+              items.map((item,index) => (
                 <ResturantItem
-                  
+                  key={index}
                   img={item.image}
                   name={item.name}
-                  rating={item.rating} 
-                  categories={item.category}
-                  price={`${item.price}`}
+                  rating={item.rating_star} 
+                  price={item.price_for_two}
                 />
               ))
             ) : (

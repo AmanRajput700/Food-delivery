@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const connectDB = require('./db');
 const ListingRestaurant = require('./models/listing')
+const Restaurant = require('./models/restaurant');
 const User = require('./models/user');
 const methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
@@ -125,16 +126,42 @@ app.get('/check-auth', (req, res) => {
   }
 });
 
+//Add restaurants
+app.post('/api/restaurants', async (req, res) => {
+  try {
+    const newRestaurant = new Restaurant(req.body);
+    await newRestaurant.save();
+    res.status(201).json(newRestaurant);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+//listing restaurants
+app.get('/api/restaurants',async(req,res)=>{
+  try{
+    const restaurants = await Restaurant.find({});
+    res.json(restaurants);
+  }catch{
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+})
+
 app.get("/:value", async (req, res) => {
     try {
         let value = req.params.value;
-        const data = await ListingRestaurant.find({ item : { $regex: new RegExp(value, 'i') } });
+        const data = await Restaurant.find({ knownFor : { $regex: new RegExp(value, 'i') } });
 
         res.json(data);
     } catch (err) {
         res.status(500).json({ error: "Something went wrong!" });
     }
 });
+
+
+
 
 //Start server
 app.listen(8080, () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-const ResturantItem = ({id,img,name,rating,categories,price}) => {
+const ResturantItem = ({id,img,name,rating,price}) => {
     
     return (<>
         
@@ -17,7 +17,7 @@ const ResturantItem = ({id,img,name,rating,categories,price}) => {
                 </div>
             </div>
             <div className='flex justify-between w-full text-sm'>
-                <div>{categories}</div>
+                
                 <div className='text-right'>{price} for one</div>
             </div>
         </div>

@@ -23,14 +23,12 @@ const restaurantSchema = new Schema({
     },
     knownFor: {
         type: [String], // storing multiple categories as array
-        enum: ['burger', 'pizza', 'biryani', 'thali', 'dosa', 'cake', 'veg', 'meals'],
+        enum: ['burger', 'pizza', 'biryani', 'thali', 'dosa', 'cake', 'veg-meals'],
         required: true,
     },
-    outlet: {
-        type: String,
-    },
     delivery_time: {
-        type: String, // e.g. "20-25 Minutes"
+        type: String,
+        default:"NA" // e.g. "20-25 Minutes"
     },
     location: {
         type: String,
