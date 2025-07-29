@@ -4,7 +4,6 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const connectDB = require('./db');
-const ListingRestaurant = require('./models/listing')
 const Restaurant = require('./models/restaurant');
 const User = require('./models/user');
 const methodOverride = require('method-override');

@@ -36,6 +36,9 @@ const restaurantSchema = new Schema({
     price_for_two: {
         type: Number, // e.g. 300
     },
+    isFixedBrand: { 
+        type: Boolean, default: false 
+    }
 }, { timestamps: true });
 
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
