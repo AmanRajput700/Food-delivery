@@ -1,10 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-const ResturantItem = ({id,img,name,rating,price}) => {
+const ResturantItem = ({id,img,name,rating,price,routeval}) => {
     
     return (<>
         
-        <Link to={`/food/order-online/resturants/`}>
+        <Link to={`/restaurants/${routeval}`}>
         <div className=' p-3 rounded-xl hover:shadow-gray-500 hover:shadow-md cursor-pointer transition duration-300 ease-in-out'>
             
             <img src={img} alt="" className='rounded-lg' style={{ height: 170, width: 600, objectFit:'cover' }} />

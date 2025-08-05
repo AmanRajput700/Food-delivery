@@ -25,14 +25,16 @@ const Resturants = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
         {restaurants.length > 0 ? (
           restaurants.map((restaurant, index) => (
-            <ResturantItem
+           !restaurant.isFixedBrand && (
+              <ResturantItem
               key={index}
               img={restaurant.image}
               name={restaurant.name}
-              rating={restaurant.rating_star} 
+              rating={restaurant.rating_star}
               price={restaurant.price_for_two}
-            />
-          ))
+              routeval={restaurant._id}
+              />
+          )))
         ) : (
           <p className="text-center col-span-3">Loading restaurants...</p>
         )}

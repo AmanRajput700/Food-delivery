@@ -1,66 +1,74 @@
 import { useState } from "react";
-import React from 'react';
 
-const Dish = ({ title, price, rating_star, rating_count, image, description }) => {
+export default function Dish({ title, price, rating_star, rating_count, image, description }) {
   const [count, setCount] = useState(0);
   const [showFull, setShowFull] = useState(false);
 
-  const toggleDescription = () => {
-    setShowFull(!showFull);
-  };
-
-  const truncatedDesc = description.length > 80 ? description.slice(0, 80) + '...' : description;
+  const toggleDescription = () => setShowFull(!showFull);
+  const truncatedDesc = description.length > 80 ? description.slice(0, 80) + "..." : description;
 
   return (
-    <>
-      <div className='w-full flex justify-between'>
-        <div className='flex flex-col font-[Gilroy-Bold]'>
-          <h2 className='text-lg font-bold text-gray-700 leading-5 sm:leading-normal'>{title}</h2>
-          <p className='text-md font-bold text-gray-800'>&#x20B9;{price}</p>
-          <p className='text-sm mt-2 '>
-            <i className='fa-solid fa-star p-0.5 text-green-900'></i>
-            <span className='text-green-900'>{rating_star}</span>
-            <span className='text-gray-500'>({rating_count})</span>
-          </p>
-
-          <div className="mt-2 max-w-md w-full text-sm sm:text-base text-gray-600 break-words">
-            <span>{showFull ? description : truncatedDesc}</span>
-            {description.length > 80 && (
-              <button 
-                className="text-green-700 font-semibold ml-1 focus:outline-none"
-                onClick={toggleDescription}
-              >
-                {showFull ? "Read Less" : "Read More"}
-              </button>
-            )}
-          </div>
+    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 py-4 border-b border-gray-200">
+      
+      {/* Text Info */}
+      <div className="flex flex-col flex-1 space-y-2">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-800">{title}</h2>
+        <p className="text-base font-bold text-green-700">&#8377;{price}</p>
+        
+        <div className="text-sm text-gray-600">
+          <i className="fa-solid fa-star text-yellow-500 mr-1"></i>
+          <span className="font-medium text-gray-800">{rating_star}</span>
+          <span className="text-gray-500"> ({rating_count})</span>
         </div>
 
-        <div className='flex flex-col items-center relative'>
-          <img src={image} alt={title} className='w-40 h-36 object-cover rounded-md' />
-          <button 
-            className='w-[70%] bg-green-600 rounded-md px-2 py-1.5 h-9 absolute -bottom-4 cursor-pointer'
-            onClick={() => !count && setCount(count + 1)}
-          >
-            {count ? (
-              <div className="flex font-bold">
-                <div className="w-1/3" onClick={() => setCount(count - 1)}>
-                  <i className="fa-solid fa-minus scale-90"></i>
-                </div>
-                <div className="font-mono w-1/3">{count}</div>
-                <div className="w-1/3" onClick={() => setCount(count + 1)}>
-                  <i className="fa-solid fa-plus scale-90"></i>
-                </div>
-              </div>
-            ) : (
-              <span className="font-[Gilroy-Bold]">Add</span>
-            )}
-          </button>
+        <div className="text-sm text-gray-700">
+          {showFull ? description : truncatedDesc}
+          {description.length > 80 && (
+            <button
+              onClick={toggleDescription}
+              className="ml-2 text-green-600 font-semibold hover:underline"
+            >
+              {showFull ? "Read Less" : "Read More"}
+            </button>
+          )}
         </div>
       </div>
-      <hr className="border-none h-0.5 bg-gray-200" />
-    </>
-  );
-};
 
-export default Dish;
+      {/* Image and Add Button */}
+      <div className="relative w-full sm:w-40 flex-shrink-0">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-36 object-cover rounded-md"
+        />
+
+        <div className="absolute bottom-[-16px] left-1/2 transform -translate-x-1/2 w-5/6">
+          {count > 0 ? (
+            <div className="flex justify-between items-center bg-green-600 text-white rounded-md px-3 py-1.5">
+              <button
+                onClick={() => setCount(prev => Math.max(prev - 1, 0))}
+                className="px-1 hover:text-gray-300"
+              >
+                <i className="fa-solid fa-minus"></i>
+              </button>
+              <span className="font-mono">{count}</span>
+              <button
+                onClick={() => setCount(prev => prev + 1)}
+                className="px-1 hover:text-gray-300"
+              >
+                <i className="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => setCount(1)}
+              className="w-full bg-green-600 text-white font-semibold py-1.5 rounded-md hover:bg-green-700"
+            >
+              Add
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

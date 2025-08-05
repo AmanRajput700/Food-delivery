@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const connectDB = require('./db');
 const Restaurant = require('./models/restaurant');
+const ListingItem = require('./models/listingitem')
 const User = require('./models/user');
 const methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
@@ -147,6 +148,30 @@ app.get('/api/restaurants',async(req,res)=>{
     res.status(500).json({ message: 'Server Error' });
   }
 })
+
+app.get("/api/restaurants/:id", async (req, res) => {
+  const restaurant = await Restaurant.findById(req.params.id);
+  const menuItems = await ListingItem.find({ restaurantId: restaurant._id });
+  res.json({ restaurant, menuItems });
+});
+
+app.get('/restaurants/:id', async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findById(req.params.id);
+
+    if (!restaurant) {
+      return res.status(404).json({ message: 'Restaurant not found' });
+    }
+
+    const menuItems = await ListingItem.find({ restaurant: restaurant._id });
+
+    res.json({ restaurant, menuItems });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 
 app.get("/:value", async (req, res) => {
     try {
