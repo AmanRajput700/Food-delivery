@@ -155,6 +155,7 @@ app.get("/api/restaurants/:id", async (req, res) => {
   res.json({ restaurant, menuItems });
 });
 
+//show menu of specific restaurnt
 app.get('/restaurants/:id', async (req, res) => {
   try {
     const restaurant = await Restaurant.findById(req.params.id);
@@ -172,6 +173,16 @@ app.get('/restaurants/:id', async (req, res) => {
   }
 });
 
+// for edit restaurants
+app.get("/myrestaurants/:userId", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const restaurants = await Restaurant.find({ userId });
+    res.json(restaurants);
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 app.get("/:value", async (req, res) => {
     try {

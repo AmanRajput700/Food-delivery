@@ -32,12 +32,18 @@ const restaurantSchema = new Schema({
     },
     location: {
         type: String,
+        default:"-"
     },
     price_for_two: {
-        type: Number, // e.g. 300
+        type: Number, 
+        default:0
     },
     isFixedBrand: { 
         type: Boolean, default: false 
+    },
+    userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
     }
 }, { timestamps: true });
 

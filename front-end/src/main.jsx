@@ -11,10 +11,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <LoginProvider>
       <AuthProvider>
-    <App />
-  </AuthProvider>
-      </LoginProvider>
-      
-
-      </StrictMode>,
+          <App />
+      </AuthProvider>
+    </LoginProvider>
+  </StrictMode>,
 )

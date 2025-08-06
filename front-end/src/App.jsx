@@ -179,7 +179,7 @@ const router = createBrowserRouter(
       element:<Resturant_page/>
     },
     {
-      path:'/Adminpanel',
+      path:'/Adminpanel/:id',
       element:<AdminPanel/>
     },{
       path:'/restaurants/:id',
@@ -193,6 +193,7 @@ export default function App() {
 
   return (
     <div className="App">
+
         {isOpen && <Login />}
         <RouterProvider router={router}/>
     </div>

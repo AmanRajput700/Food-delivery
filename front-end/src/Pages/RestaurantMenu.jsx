@@ -27,11 +27,11 @@ export default function RestaurantMenu() {
       <MainNav/>
     <div className='w-full sm:w-[80%] md:w-[70%] lg:w-[60%]  mx-auto mt-8'>
         <div>
-            <h1 className='font-[Poppins] font-bold text-2xl p-2'>Laziz Pizza</h1>
+            <h1 className='font-[Poppins] font-bold text-2xl p-2'>{restaurant.name}</h1>
             <hr className='bg-gray-400 h-[1px] border-none'/>
         </div>
         
-        <ResturantDetails/>
+        <ResturantDetails rating={restaurant.rating_star} totalRatings={restaurant.rating_count} priceForTwo={restaurant.price_for_two}  categories={restaurant.knownFor} outlet={restaurant.location} deliveryTime={restaurant.delivery_time}/>
         
     </div>
       <div className='w-full sm:w-[80%] md:w-[70%] lg:w-[60%]  mx-auto mt-8'>

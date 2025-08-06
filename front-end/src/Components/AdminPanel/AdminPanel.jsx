@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/authContext';
 import { useNavigate } from 'react-router-dom';
 import AdminForm from '../../Admin/AdminForm';
+import EditRestaurants from '../../Admin/EditRestaurant';
 
 export default function AdminPanel() {
   const { user, logout } = useContext(AuthContext);
@@ -49,7 +50,7 @@ export default function AdminPanel() {
       case 'Add Restaurant':
         return <AdminForm/>;
       case 'Edit Restaurant':
-        return <div>Edit Restaurant Options</div>;
+        return <EditRestaurants/>;
       default:
         return <div>Welcome to Admin Panel</div>;
     }
