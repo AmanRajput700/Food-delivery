@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RestaurantList = ({ name, image }) => {
+const RestaurantList = ({ name, image,onDelete,onEdit }) => {
   return (
     <div className="flex w-full bg-white rounded-lg shadow-lg overflow-hidden mb-4 h-40">
       {/* Left: Image + Name */}
@@ -18,10 +18,10 @@ const RestaurantList = ({ name, image }) => {
         <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full text-center">
           View
         </button>
-        <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md w-full text-center">
+        <button onClick={onEdit} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md w-full text-center">
           Edit
         </button>
-        <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md w-full text-center">
+        <button onClick={onDelete} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md w-full text-center">
           Delete
         </button>
       </div>

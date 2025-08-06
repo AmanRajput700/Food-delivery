@@ -184,6 +184,38 @@ app.get("/myrestaurants/:userId", async (req, res) => {
   }
 });
 
+// In routes/restaurants.js
+app.delete('/:restaurantId/:userId', async (req, res) => {
+  const { restaurantId, userId } = req.params;
+  try {
+    const deleted = await Restaurant.findOneAndDelete({
+      _id: restaurantId,
+      userId: userId,
+    });
+
+    if (!deleted) return res.status(404).json({ error: "Restaurant not found" });
+    res.json({ message: "Restaurant deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+//edit
+app.put('/restaurants/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, image, knownFor, location, price_for_two } = req.body;
+  try {
+    const updated = await Restaurant.findByIdAndUpdate(
+      id,
+      { name, image, knownFor, location, price_for_two },
+      { new: true }
+    );
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get("/:value", async (req, res) => {
     try {
         let value = req.params.value;
