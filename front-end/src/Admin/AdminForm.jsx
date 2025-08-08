@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../contexts/authContext'; // ✅ adjust path if needed
+import { AuthContext } from '../contexts/authContext';
 
 function AddRestaurantForm() {
-  const { user } = useContext(AuthContext); // ✅ Get user from context
+  const { user } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -13,7 +13,7 @@ function AddRestaurantForm() {
     price_for_two: '',
   });
 
-  const categories = ['burger', 'pizza', 'biryani', 'thali', 'dosa', 'cake', 'veg-meals'];
+  const categories = ['burger', 'pizza', 'biryani', 'thali', 'dosa', 'cake', 'veg-meals','NA'];
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,20 +22,16 @@ function AddRestaurantForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user.id) {
+    if (!user?.id) {
       alert("You're not logged in. Please log in to add a restaurant.");
       return;
     }
 
     try {
-      const dataToSend = {
+      await axios.post('http://localhost:8080/api/restaurants', {
         ...formData,
-        userId: user.id, // ✅ Add userId from context
-      };
-
-      await axios.post('http://localhost:8080/api/restaurants', dataToSend, {
-        withCredentials: true, // in case you're using cookies/sessions
-      });
+        userId: user.id,
+      }, { withCredentials: true });
 
       alert('Restaurant added successfully!');
       setFormData({
@@ -52,34 +48,96 @@ function AddRestaurantForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-5 border rounded-lg shadow">
-      <h2 className="text-xl font-bold mb-4">Add New Restaurant</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <div className="max-w-2xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">🍽️ Add New Restaurant</h2>
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        {/* Restaurant Name */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Restaurant Name</label>
+          <input 
+            type="text" 
+            name="name" 
+            value={formData.name} 
+            onChange={handleChange}
+            placeholder="e.g., Spice Hub"
+            required 
+            className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-red-400 focus:outline-none"
+          />
+        </div>
 
-        <input type="text" name="name" value={formData.name} onChange={handleChange}
-          placeholder="Restaurant Name" required className="border p-2 rounded" />
+        {/* Image URL */}
+        <div className="col-span-1">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+          <input 
+            type="text" 
+            name="image" 
+            value={formData.image} 
+            onChange={handleChange}
+            placeholder="Paste restaurant image URL"
+            className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-red-400 focus:outline-none"
+          />
+          {formData.image && (
+            <img 
+              src={formData.image} 
+              alt="Preview" 
+              className="mt-2 w-full h-32 object-cover rounded-lg border"
+            />
+          )}
+        </div>
 
-        <input type="text" name="image" value={formData.image} onChange={handleChange}
-          placeholder="Image URL" className="border p-2 rounded" />
+        {/* Known For */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Known For</label>
+          <select 
+            name="knownFor" 
+            value={formData.knownFor} 
+            onChange={handleChange}
+            required 
+            className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-red-400 focus:outline-none"
+          >
+            <option value="">Select a category</option>
+            {categories.map(cat => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
 
-        <select name="knownFor" value={formData.knownFor} onChange={handleChange}
-          required className="border p-2 rounded">
-          <option value="">Select Known For</option>
-          {categories.map(cat => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </select>
+        {/* Location */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+          <input 
+            type="text" 
+            name="location" 
+            value={formData.location} 
+            onChange={handleChange}
+            placeholder="e.g., Mumbai, India"
+            className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-red-400 focus:outline-none"
+          />
+        </div>
 
-        <input type="text" name="location" value={formData.location} onChange={handleChange}
-          placeholder="Location" className="border p-2 rounded" />
+        {/* Price for Two */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Price for Two</label>
+          <input 
+            type="number" 
+            name="price_for_two" 
+            value={formData.price_for_two} 
+            onChange={handleChange}
+            placeholder="e.g., 500"
+            className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-red-400 focus:outline-none"
+          />
+        </div>
 
-        <input type="number" name="price_for_two" value={formData.price_for_two} onChange={handleChange}
-          placeholder="Price for Two" className="border p-2 rounded" />
-
-        <button type="submit" className="bg-red-500 text-white p-2 rounded hover:bg-red-700">
-          Add Restaurant
-        </button>
-
+        {/* Submit Button */}
+        <div className="md:col-span-2 flex justify-end">
+          <button 
+            type="submit" 
+            className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600 transition-colors"
+          >
+            ➕ Add Restaurant
+          </button>
+        </div>
       </form>
     </div>
   );

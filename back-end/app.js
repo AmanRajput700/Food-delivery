@@ -164,7 +164,7 @@ app.get('/restaurants/:id', async (req, res) => {
       return res.status(404).json({ message: 'Restaurant not found' });
     }
 
-    const menuItems = await ListingItem.find({ restaurant: restaurant._id });
+    const menuItems = await ListingItem.find({ restaurantId: restaurant._id });
 
     res.json({ restaurant, menuItems });
   } catch (err) {
@@ -184,21 +184,7 @@ app.get("/myrestaurants/:userId", async (req, res) => {
   }
 });
 
-// In routes/restaurants.js
-app.delete('/:restaurantId/:userId', async (req, res) => {
-  const { restaurantId, userId } = req.params;
-  try {
-    const deleted = await Restaurant.findOneAndDelete({
-      _id: restaurantId,
-      userId: userId,
-    });
 
-    if (!deleted) return res.status(404).json({ error: "Restaurant not found" });
-    res.json({ message: "Restaurant deleted successfully" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
 
 //edit
 app.put('/restaurants/:id', async (req, res) => {
@@ -215,6 +201,93 @@ app.put('/restaurants/:id', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+//ADD dishes
+app.post("/restaurants/:id/dishes", async (req, res) => {
+  try {
+    const { title, price, image, description } = req.body;
+    const restaurant = await Restaurant.findById(req.params.id);
+
+    if (!restaurant) {
+      return res.status(404).json({ message: "Restaurant not found" });
+    }
+
+    const dish = new ListingItem({
+      restaurantId: restaurant._id,
+      title,
+      price,
+      image,
+      description
+    });
+
+    await dish.save();
+    res.status(201).json(dish);
+  } catch (err) {
+    console.error("Error adding dish:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+
+// EDIT a dish
+app.put("/dishes/:dishId", async (req, res) => {
+  try {
+    const { title, price, image, description } = req.body;
+    const updatedDish = await ListingItem.findByIdAndUpdate(
+      req.params.dishId,
+      { title, price, image, description },
+      { new: true, runValidators: true }
+    );
+    if (!updatedDish) {
+      return res.status(404).json({ message: "Dish not found" });
+    }
+    res.json(updatedDish);
+  } catch (err) {
+    console.error("Error editing dish:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// DELETE a dish by ID
+app.delete("/menu/:dishId", async (req, res) => {
+  try {
+    const { dishId } = req.params;
+
+    // Validate ObjectId before querying
+    if (!mongoose.Types.ObjectId.isValid(dishId)) {
+      return res.status(400).json({ message: "Invalid dish ID" });
+    }
+
+    const dish = await ListingItem.findByIdAndDelete(dishId);
+    if (!dish) {
+      return res.status(404).json({ message: "Dish not found" });
+    }
+
+    res.json({ message: "Dish deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting dish:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// In routes/restaurants.js
+app.delete('/:restaurantId/:userId', async (req, res) => {
+  const { restaurantId, userId } = req.params;
+  try {
+    const deleted = await Restaurant.findOneAndDelete({
+      _id: restaurantId,
+      userId: userId,
+    });
+
+    if (!deleted) return res.status(404).json({ error: "Restaurant not found" });
+    res.json({ message: "Restaurant deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 
 app.get("/:value", async (req, res) => {
     try {

@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
-const RestaurantList = ({ name, image,onDelete,onEdit }) => {
+const RestaurantList = ({ name, image,onDelete,onEdit,id }) => {
+
+  const navigate = useNavigate();
   return (
     <div className="flex w-full bg-white rounded-lg shadow-lg overflow-hidden mb-4 h-40">
       {/* Left: Image + Name */}
@@ -15,13 +18,16 @@ const RestaurantList = ({ name, image,onDelete,onEdit }) => {
 
       {/* Right: Buttons stacked */}
       <div className="flex flex-col justify-center items-end w-1/4 pr-6 space-y-2">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full text-center">
+        <button
+          onClick={() => navigate(`/restaurants/${id}/dishes`)}
+          className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full text-center"
+        >
           View
         </button>
-        <button onClick={onEdit} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md w-full text-center">
+        <button onClick={onEdit} className="bg-green-500 cursor-pointer hover:bg-green-600 text-white px-4 py-2 rounded-md w-full text-center">
           Edit
         </button>
-        <button onClick={onDelete} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md w-full text-center">
+        <button onClick={onDelete} className="bg-red-500 cursor-pointer hover:bg-red-600 text-white px-4 py-2 rounded-md w-full text-center">
           Delete
         </button>
       </div>

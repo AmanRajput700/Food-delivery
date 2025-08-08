@@ -33,7 +33,7 @@ import Resturant_page from './Pages/Resturant_page';
 import { useEffect } from 'react';
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 import RestaurantMenu from './Pages/RestaurantMenu';
-
+import ManageDishes from './Admin/ManageDishes';
 
 
 const router = createBrowserRouter(
@@ -176,14 +176,27 @@ const router = createBrowserRouter(
     },
     {
       path:'food/order-online/resturants',
-      element:<Resturant_page/>
+      element:<div>
+        <Resturant_page/>
+      </div>
     },
     {
       path:'/Adminpanel/:id',
-      element:<AdminPanel/>
+      element:<div>
+        <MainNav/>
+        <AdminPanel/>
+      </div>
     },{
       path:'/restaurants/:id',
-      element:<RestaurantMenu/>
+      element:<div>
+        <RestaurantMenu/>
+      </div>
+    },{
+      path:"/restaurants/:id/dishes" ,
+      element:<div>
+        <MainNav/>
+        <ManageDishes />
+      </div>
     }
   ]
 )
