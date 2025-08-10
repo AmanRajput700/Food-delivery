@@ -31,6 +31,7 @@ const Thali = () => {
                   name={item.name}
                   rating={item.rating_star} 
                   price={item.price_for_two}
+                  routeval={item._id}
                 />
             ))
           ) : (

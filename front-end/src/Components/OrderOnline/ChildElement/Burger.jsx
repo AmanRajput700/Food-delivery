@@ -25,11 +25,13 @@ const Burger = () => {
           {items.length > 0 ? (
             items.map((item,index) => (
                 <ResturantItem
+                  
                   key={index}
                   img={item.image}
                   name={item.name}
                   rating={item.rating_star} 
                   price={item.price_for_two}
+                  routeval={item._id}
                 />
             ))
           ) : (
